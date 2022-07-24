@@ -15,7 +15,7 @@
 - Download the repository
 - Run `composer install`
 - Uncomment `extension=curl` in php.ini in order to execute `curl_exec`
-- Run `php .\bin\console app:convert "https://s3-ap-southeast-2.amazonaws.com/catch-code-challenge/challenge-1/orders.jsonl" data\test.csv [test@gmail.com]` command in project root directory. Email address is an optional parameter.
+- Run `php .\bin\console app:convert "https://s3-ap-southeast-2.amazonaws.com/catch-code-challenge/challenge-1/orders.jsonl" data\test.csv [test@gmail.com]` command in the root directory of the project. The extension can be either of csv, xml or yaml. Email address is an optional parameter, but email will not be sent out because the DSN is a fake value.
 - Check console output for executing information and check `data/` folder for the converted file.
 - If the file name uploaded to Github is duplicated, command will pop up a tip. Please change a file name and retry because the uploaded files are not removed on Github when uploading.
 

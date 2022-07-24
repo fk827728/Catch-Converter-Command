@@ -16,23 +16,23 @@ use Symfony\Component\Console\Input\InputArgument;
 class ConverterCommand extends Command
 {
     /**
-     * @var striOrderFileConverterServiceng 
+     * @var striOrderFileConverterServiceng
      */
     private OrderFileConverterService $orderFileConverterService;
- 
+
     /**
-     * @var OrderFileValidatorService 
-     */ 
+     * @var OrderFileValidatorService
+     */
     private OrderFileValidatorService $orderFileValidatorService;
 
     /**
-     * @var UploadService 
-     */ 
+     * @var UploadService
+     */
     private UploadService $uploadService;
-    
+
     /**
-     * @var EmailService 
-     */ 
+     * @var EmailService
+     */
     private EmailService $emailService;
 
     /**
@@ -82,7 +82,7 @@ class ConverterCommand extends Command
         if (!empty($emailAddress)) {
             $this->emailService->validate($emailAddress);
         }
-        
+
         $output->write("Start converting...\n");
         $jsonlFileName = $input->getArgument('jsonl_file_name');
         $outputFileName = $input->getArgument('output_file_name');
