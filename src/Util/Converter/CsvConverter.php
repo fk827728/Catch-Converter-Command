@@ -17,7 +17,7 @@ class CsvConverter implements ConverterInterface
     {
         $keys = [];
         foreach ($dataInterface as $key => $value) {
-            $keys[] = '"' . StringService::toSnakeString($key) . '"';
+            $keys[] = StringService::toSnakeString($key);
         }
 
         return implode(',', $keys);
@@ -43,7 +43,7 @@ class CsvConverter implements ConverterInterface
     {
         $values = [];
         foreach ($dataInterface as $key => $value) {
-            $values[] = '"' . $value . '"';
+            $values[] = $value ;
         }
 
         return implode(',', $values);

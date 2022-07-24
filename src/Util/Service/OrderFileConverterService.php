@@ -98,12 +98,12 @@ class OrderFileConverterService
         $geocoding = $this->geocodingService->getGeocoding($address);
 
         $this->dataInterface->setOrderId($orderObject->order_id);
-        $this->dataInterface->setOrderDateTime($orderObject->order_date);
+        $this->dataInterface->setOrderDateTime('"' . $orderObject->order_date . '"');
         $this->dataInterface->setTotalOrderValue(round($totalOrderValue, 2));
         $this->dataInterface->setAverageUnitPrice(round($averageUnitPrice, 2));
         $this->dataInterface->setDistinctUnitCount(count($orderObject->items));
         $this->dataInterface->setTotalUnitsCount($totalQuantity);
-        $this->dataInterface->setCustomerState($orderObject->customer?->shipping_address?->state);
+        $this->dataInterface->setCustomerState('"' . $orderObject->customer?->shipping_address?->state . '"');
         $this->dataInterface->setLatitude($geocoding['latitude']);
         $this->dataInterface->setLongitude($geocoding['longitude']);
 
