@@ -45,12 +45,12 @@ class CsvValidator implements ValidatorInterface
             sleep(60);
             $response = curl_exec($curl);
             $data = file_get_contents(json_decode($response)->package->url . '.json');
-            $state = json_decode($data)->package->validations[0]->state;
+            $state = json_decode($data)?->package?->validations[0]?->state;
             if ($state === self::STATUS_VALID) {
-                echo "File is valid\n";
+                echo "Valid Csv File\n";
                 break;
             } elseif ($state === self::STATUS_INVALID) {
-                throw new Exception('Invalid csv file');
+                throw new Exception('Invalid Csv file');
             }
             echo "Retry validating\n";
         } while ($state === self::STATUS_NOT_FOUND);

@@ -43,7 +43,7 @@ class CsvConverter implements ConverterInterface
     {
         $values = [];
         foreach ($dataInterface as $key => $value) {
-            $values[] = $value ;
+            $values[] = $value;
         }
 
         return implode(',', $values);

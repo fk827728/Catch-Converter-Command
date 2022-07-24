@@ -44,12 +44,12 @@ class OrderFileConverterServiceTest extends KernelTestCase
         $dataInterface = $orderFileConverterService->convertOrderObjectToOrderData(json_decode($orderString));
           
         $this->assertEquals($dataInterface->getOrderId(), 1033); 
-        $this->assertEquals($dataInterface->getOrderDateTime(), 'Sun, 10 Mar 2019 06:30:02 +0000'); 
+        $this->assertEquals($dataInterface->getOrderDateTime(), '"Sun, 10 Mar 2019 06:30:02 +0000"'); 
         $this->assertEquals($dataInterface->getTotalOrderValue(), 339.19); 
         $this->assertEquals($dataInterface->getAverageUnitPrice(), 48.46); 
         $this->assertEquals($dataInterface->getDistinctUnitCount(), 2); 
         $this->assertEquals($dataInterface->getTotalUnitsCount(), 7); 
-        $this->assertEquals($dataInterface->getCustomerState(), 'VICTORIA'); 
+        $this->assertEquals($dataInterface->getCustomerState(), '"VICTORIA"'); 
         $this->assertEquals($dataInterface->getLatitude(), 0); 
         $this->assertEquals($dataInterface->getLongitude(), 0); 
     }

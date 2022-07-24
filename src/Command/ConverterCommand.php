@@ -86,6 +86,7 @@ class ConverterCommand extends Command
         $output->write("Start converting...\n");
         $jsonlFileName = $input->getArgument('jsonl_file_name');
         $outputFileName = $input->getArgument('output_file_name');
+        $outputFileName = strtolower($outputFileName);
         $this->orderFileConverterService->convertOrderFile($jsonlFileName, $outputFileName);
         $output->write("Converting succeeds\n");
 
