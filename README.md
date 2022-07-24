@@ -69,6 +69,12 @@
 
 - There are 2 test cases in tests/Service/ folder. In order to test function `ConvertOrderObjectToOrderData`, I changed this function from `private` to `public`.
 
+## Others
+- Some parameters are defined in config/services.yaml file and parameter values are in .env file.
+- Google Map API key in .env is not authorized for location querying because I didn't add Credit Card Information.
+- Github API Token works fine.
+- MAILER_DSN value is in .env file and it is a fake value.
+
 ## Project Tree
 ```
 ConverterCommand
