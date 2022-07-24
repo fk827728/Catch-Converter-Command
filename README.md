@@ -65,7 +65,7 @@
 
 - Generator is used to read the file and to handle the memory usage.
 
-- All the codes pass PHP Coding Standards checking
+- All the codes pass PHP Coding Standards checking. If the repository is downloaded to a Windows computer, `End of line character is invalid; expected "\n" but found "\r\n"` error will happen when running `phpcs ./src/`.
 
 - There are 2 test cases in tests/Service/ folder. In order to test function `ConvertOrderObjectToOrderData`, I changed this function from `private` to `public`.
 
