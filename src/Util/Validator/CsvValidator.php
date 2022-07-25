@@ -39,23 +39,35 @@ class CsvValidator implements ValidatorInterface
         curl_setopt($curl, CURLOPT_POSTFIELDS, 'urls[]=' . $fileName);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
+        $retryCount = 0;
+        $state = self::STATUS_NOT_FOUND;
         do {
             // Wait for 60 seconds until Github page creating file succeeds
             echo "Wait for 60 seconds until Github page creating file succeeds\n";
             sleep(60);
             $response = curl_exec($curl);
             $data = file_get_contents(json_decode($response)->package->url . '.json');
-            $state = json_decode($data)?->package?->validations[0]?->state;
-            if ($state === self::STATUS_VALID) {
+            $validations = json_decode($data)?->package?->validations;
+            if (!$validations || count($validations) === 0) {
+                echo "Validations is empty. Retry validating\n";
+                continue;
+            }
+            $state = $validations[0]?->state;
+            if (isset($state) && $state === self::STATUS_VALID) {
                 echo "Valid Csv File\n";
                 break;
-            } elseif ($state === self::STATUS_INVALID) {
+            } elseif (isset($state) && $state === self::STATUS_INVALID) {
                 throw new Exception('Invalid Csv file');
             }
-            echo "Retry validating\n";
-        } while ($state === self::STATUS_NOT_FOUND);
+            $retryCount ++;
+            if ($retryCount > 5) {
+                echo "Retry more than 5 times\n";
+                break;
+            }
+            echo "Github shared csv file not found. Retry validating\n";
+        } while (!isset($state) || $state === self::STATUS_NOT_FOUND);
 
-        if ($state !== self::STATUS_VALID) {
+        if (!isset($state) || $state !== self::STATUS_VALID) {
             throw new Exception('Invalid Csv file');
         }
 
