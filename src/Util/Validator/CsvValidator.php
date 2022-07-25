@@ -55,6 +55,10 @@ class CsvValidator implements ValidatorInterface
             echo "Retry validating\n";
         } while ($state === self::STATUS_NOT_FOUND);
 
+        if ($state !== self::STATUS_VALID) {
+            throw new Exception('Invalid Csv file');
+        }
+
         curl_close($curl);
     }
 }
