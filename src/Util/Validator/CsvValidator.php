@@ -59,7 +59,7 @@ class CsvValidator implements ValidatorInterface
             } elseif (isset($state) && $state === self::STATUS_INVALID) {
                 throw new Exception('Invalid Csv file');
             }
-            $retryCount ++;
+            $retryCount++;
             if ($retryCount > 5) {
                 echo "Retry more than 5 times\n";
                 break;
