@@ -47,18 +47,15 @@ class UploadService
             'content' => base64_encode(file_get_contents($fileName))
         ];
 
-        try {
-            $this->httpClientInterface->request(
-                'PUT',
-                $url,
-                [
-                    'headers' => $headers,
-                    'json' => $body
-                ]
-            );
-        } catch (Exception $e) {
-            throw new Exception('File exists, please change a new file name');
-        }
+        // Remove try-catch to show the true error message
+        $this->httpClientInterface->request(
+            'PUT',
+            $url,
+            [
+                'headers' => $headers,
+                'json' => $body
+            ]
+        );
 
         return $githubFilePath . end($fileNameInfo);
     }
